@@ -1,0 +1,50 @@
+.form
+{
+    margin: auto;
+    background-color: #fff;
+    text-align: center;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding-bottom: 5px;
+}
+
+
+form {
+    padding: 10px;
+}
+
+button
+{
+    margin-top: 10px;
+    width: 100%;
+}
+
+label
+{
+    display: inline-block;
+}
+
+.checkbox
+{
+    width: auto;
+    display: inline-block;
+
+}
+
+input
+{
+    line-height: 50px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: auto;
+    width: 100%;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 24px;
+}
+
+input:focus
+{
+    border-radius: 20px;
+    transition: 0.5s;
+}
