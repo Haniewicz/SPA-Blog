@@ -28,6 +28,10 @@ export const routes = [
             guest: true
         }
     },
+    {
+        path: '/:catchAll(.*)',
+        redirect: '/',
+    },
 ];
 
 const router = createRouter({
