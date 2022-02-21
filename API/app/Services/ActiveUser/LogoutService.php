@@ -14,8 +14,8 @@ class LogoutService
             Session::flush();
             auth()->user()->tokens()->delete();
             Auth::guard('web')->logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
+            Session::invalidate();
+            Session::regenerateToken();
 
             $success = true;
             $message = 'Successfully logged out';

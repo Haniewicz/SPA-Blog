@@ -64,6 +64,11 @@ export default {
                         .then(response => {
                             if (response.data.success) {
                                 this.$store.dispatch('token_update', response.data.token)
+
+                                if(this.formData.remember){
+                                    this.$store.dispatch('token_remember', response.data.token)
+                                }
+
                                 this.$store.dispatch('user_update', response.data.user)
                                 this.$router.push('/')
                             } else {

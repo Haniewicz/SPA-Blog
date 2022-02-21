@@ -4,7 +4,7 @@ import CrossPageInformationModule from './CrossPageInformation.module.js'
 
 export default createStore({
     state: {
-        token: sessionStorage.getItem('token') || localStorage.getItem('token') || '',
+        token: localStorage.getItem('token') || sessionStorage.getItem('token') || '',
         user: []
       },
     mutations: {
@@ -20,14 +20,12 @@ export default createStore({
         }
     },
     actions: {
-        token_update(context, payload, remember) {
-            if(remember == true)
-            {
-                localStorage.setItem('token', payload)
-            }else{
-                sessionStorage.setItem('token', payload)
-            }
+        token_update(context, payload) {
+            sessionStorage.setItem('token', payload)
             context.commit('UPDATE_TOKEN', payload)
+        },
+        token_remember(context, payload) {
+            localStorage.setItem('token', payload)
         },
         user_update(context, payload) {
             const user = context.state.user

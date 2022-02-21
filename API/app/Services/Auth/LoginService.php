@@ -2,6 +2,7 @@
 //This is Service file. You should write your logic in here
 namespace App\Services\Auth;
 
+use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
