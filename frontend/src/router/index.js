@@ -42,7 +42,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     if(store.getters.token != null)
     {
-        if (store.getters.user == null)
+        if (store.getters.user === undefined)
         {
             axios.get('api/me')
                 .then(response =>

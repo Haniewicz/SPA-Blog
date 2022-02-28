@@ -25,7 +25,7 @@
                         </router-link>
                     </li>
                     <li v-if="$store.getters.token" style="text-align: right;" class="nav-item dropdown ml-auto align-right">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">siema</a>
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$store.getters.user?.name}}</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
                             <a class="dropdown-item" @click="logout">Wyloguj</a>
                             <a class="dropdown-item" href="#">Another action</a>

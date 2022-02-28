@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 //including services
 use App\Services\ActiveUser\LogoutService;
+use App\Services\ActiveUser\UserDataService;
 
 class ActiveUserController extends Controller
 {
@@ -14,5 +15,11 @@ class ActiveUserController extends Controller
     public function logout(Request $request, LogoutService $logoutService)
     {
         return response()->json($logoutService->handle($request)); //Return received response to frontend in JSON format
+    }
+
+    //Function that return user data selectioned in UserDataService
+    public function show(Request $request, UserDataService $userDataService)
+    {
+        return response()->json($userDataService->handle($request)); //Return received response to frontend in JSON format
     }
 }
