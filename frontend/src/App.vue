@@ -27,9 +27,11 @@
                     <li v-if="$store.getters.token" style="text-align: right;" class="nav-item dropdown ml-auto align-right">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{$store.getters.user?.name}}</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" @click="logout">Wyloguj</a>
+                            <router-link class="dropdown-item" data-toggle="collapse" :to="{ name: 'profile' }">
+                                Profil
+                            </router-link>
                             <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" @click="logout">Wyloguj</a>
                         </div>
                     </li>
                     <li v-else class="nav-item ml-auto">

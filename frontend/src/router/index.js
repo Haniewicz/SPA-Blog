@@ -35,7 +35,6 @@ export const routes = [
         component: Profile,
         meta: {
             requiresAuth: true,
-            requiredPermissions: ['admin']
         }
     },
     {
@@ -49,7 +48,15 @@ const router = createRouter({
     routes: routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+    let url = null;
+    //Function to prevent multiple using of next()
+    function redirect(to = null)
+    {
+        url = to
+    }
+
+    //Checking if user data is present in vuex. If not then get it from api
     if(store.getters.token != null)
     {
         if (store.getters.user === undefined)
@@ -73,37 +80,45 @@ router.beforeEach((to, from, next) => {
         }
     }
 
-    let allow = true;
 
     //In these conditions i define what should be done if they're not fulfilled
+
+    //Check if user is authenticated. If not then redirect to login page
     if (to.matched.some(record => record.meta.requiresAuth))
     {
         if(!store.getters.token)
         {
-            next('/login')
+            redirect('/login')
         }
     }
 
+    //Checking if user is guest. If not then redirect to /
     if(to.matched.some(record => record.meta.guest))
     {
         if(store.getters.token)
         {
-            next('/')
+            redirect('/')
         }
     }
 
-    if(to.matched.some(record => record.meta.requiredPermissions))
+    //Checking if user has permission to enter specific site. If not then redirect to /
+    if(to.matched.some(record => record.meta.requiredPermissions) && url == null)
     {
-        axios.get('sanctum/csrf-cookie').then(response => {
-            axios.post('api/check_permissions', to.meta.requiredPermissions)
+        await axios.get('sanctum/csrf-cookie').then(response => {
+            return axios.post('api/check_permissions', to.meta.requiredPermissions)
                 .then(response =>
                     {
-                        console.log(response.data)
+                        if(!response.data)
+                        {
+                             redirect('/') //To nie działa
+                             alert("Nie masz dostępu do tej strony!")
+                        }
                     })
             })
     }
 
-    next()
+    //Redirecting to url specified in redirect() function or to the default direction if not encountered error
+    next(url)
 })
 
 export default router;
