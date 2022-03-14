@@ -49,13 +49,6 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-    let url = null;
-    //Function to prevent multiple using of next()
-    function redirect(to = null)
-    {
-        url = to
-    }
-
     //Checking if user data is present in vuex. If not then get it from api
     if(store.getters.token != null)
     {
@@ -88,7 +81,7 @@ router.beforeEach(async (to, from, next) => {
     {
         if(!store.getters.token)
         {
-            redirect('/login')
+            return next('/login')
         }
     }
 
@@ -97,7 +90,7 @@ router.beforeEach(async (to, from, next) => {
     {
         if(store.getters.token)
         {
-            redirect('/')
+            return next('/')
         }
     }
 
@@ -110,15 +103,15 @@ router.beforeEach(async (to, from, next) => {
                     {
                         if(!response.data)
                         {
-                             redirect('/') //To nie działa
+                             return next('/')
                              alert("Nie masz dostępu do tej strony!")
                         }
                     })
             })
     }
 
-    //Redirecting to url specified in redirect() function or to the default direction if not encountered error
-    next(url)
+    //Redirect to final destination
+    return next()
 })
 
 export default router;
