@@ -43,7 +43,7 @@
             </div>
         </div>
     </nav>
-
+    <h1>Jeśli to czytasz, to nie wiem jak się tu dostałeś, ale ta strona będzie zmieniona</h1>
     <router-view></router-view>
     <div class="container">
         <div style="clear: both;"></div>

@@ -2,41 +2,89 @@ import {createWebHistory, createRouter} from "vue-router";
 import axios from 'axios';
 import store from '../store'
 
-import Home from '../pages/Home';
-import Register from '../pages/Register';
-import Login from '../pages/Login';
-import Profile from '../pages/Profile';
+//Main components for route groups:
+import Site from '../components/site/Index'
+import Admin from '../components/admin/Index'
 
+//Consumer components:
+import Home from '../pages/site/Home';
+import Register from '../pages/site/Register';
+import Login from '../pages/site/Login';
+import Profile from '../pages/site/Profile';
+
+//Admin panel components:
+import Dashboard from '../pages/admin/Dashboard';
+import Posts from '../pages/admin/Posts';
+
+//Defining routes:
 export const routes = [
+
+    //Route group for consumers
     {
-        name: 'home',
         path: '/',
-        component: Home
+        component: Site, //Main component for this route group
+        children: [
+            //Home site route
+            {
+                name: 'home',
+                path: '',
+                component: Home
+            },
+            //Register route
+            {
+                name: 'register',
+                path: 'register',
+                component: Register,
+                meta: {
+                    guest: true
+                }
+            },
+            //Login route
+            {
+                name: 'login',
+                path: 'login',
+                component: Login,
+                meta: {
+                    guest: true
+                }
+            },
+            //Profile route
+            {
+                name: 'profile',
+                path: '/profile',
+                component: Profile,
+                meta: {
+                    requiresAuth: true,
+                }
+            },
+        ],
     },
+
+    //Route group for admin panel
     {
-        name: 'register',
-        path: '/register',
-        component: Register,
-        meta: {
-            guest: true
-        }
-    },
-    {
-        name: 'login',
-        path: '/login',
-        component: Login,
-        meta: {
-            guest: true
-        }
-    },
-    {
-        name: 'profile',
-        path: '/profile',
-        component: Profile,
-        meta: {
+        path: '/dashboard',
+        component: Admin, //Main component for this route group
+        meta: { //Requirements to even access this route group
             requiresAuth: true,
-        }
+            //requiredPermissions: ['access:dashboard']
+        },
+        children: [
+            //Dashboard route
+            {
+                name: 'dashboard',
+                path: '',
+                component: Dashboard,
+            },
+            //Posts route
+            {
+                name: 'posts',
+                path: 'posts',
+                component: Posts,
+            },
+        ],
     },
+
+    //Catching routes that don't match any defined route and redirecting to /
     {
         path: '/:catchAll(.*)',
         redirect: '/',
