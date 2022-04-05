@@ -3,8 +3,8 @@
 <template>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link href="css/jumbotron.css" rel="stylesheet">
-    <link href="css/auth.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../css/jumbotron.css">
+    <link type="text/css" rel="stylesheet" href="../css/auth.css">
 
 <div>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">

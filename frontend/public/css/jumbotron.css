@@ -41,6 +41,11 @@ nav
     margin-right: 0px;
 }
 
+.post
+{
+    margin-top: 10px;
+}
+
 .right-panel
 {
     background-color: white;

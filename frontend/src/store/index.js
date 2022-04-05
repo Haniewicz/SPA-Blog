@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 import CrossPageInformationModule from './CrossPageInformation.module.js'
+import PostModule from './Post.module.js'
 
 export default createStore({
     state: {
@@ -49,6 +50,7 @@ export default createStore({
         }
     },
     modules: {
-        information: CrossPageInformationModule
+        information: CrossPageInformationModule,
+        post: PostModule,
     }
 })

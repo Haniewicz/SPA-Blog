@@ -11,6 +11,7 @@ import Home from '../pages/site/Home';
 import Register from '../pages/site/Register';
 import Login from '../pages/site/Login';
 import Profile from '../pages/site/Profile';
+import Post from '../pages/site/Post';
 
 //Admin panel components:
 import Dashboard from '../pages/admin/Dashboard';
@@ -33,7 +34,7 @@ export const routes = [
             //Register route
             {
                 name: 'register',
-                path: 'register',
+                path: '/register',
                 component: Register,
                 meta: {
                     guest: true
@@ -42,7 +43,7 @@ export const routes = [
             //Login route
             {
                 name: 'login',
-                path: 'login',
+                path: '/login',
                 component: Login,
                 meta: {
                     guest: true
@@ -58,6 +59,18 @@ export const routes = [
                 }
             },
         ],
+    },
+
+    {
+        path: '/posts/:id',
+        component: Site,
+        children: [
+            {
+                path: '',
+                component: Post,
+            }
+        ],
+
     },
 
     //Route group for admin panel
