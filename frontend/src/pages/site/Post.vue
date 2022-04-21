@@ -4,10 +4,10 @@
 
         <div style="float: left;" class="col-md-9 posts">
             <div class="card mb-4 box-shadow">
-                <img class="card-img-top max-card-img-height" src="https://www.imore.com/sites/imore.com/files/styles/xlarge/public/field/image/2017/05/facebook-on-iphone-hero.jpg" alt="Card image cap">
+                <img class="card-img-top max-card-img-height" src="http://localhost:8000/images/img.jpg" alt="Card image cap">
                 <div class="card-body">
                     <h2>{{Post.title}}</h2>
-                    <p><small><b>{{Post.created_at}} | <span style="color: #B41F1F">{{Post.category_id}}</span></b></small></p>
+                    <p><small><b>{{Post.created_at}} | <span style="color: #B41F1F">{{Post.category}}</span></b></small></p>
                     <p class="card-text">{{Post.content}}</p>
                 </div>
             </div>
@@ -38,12 +38,20 @@ export default {
     data: function(){
         return {
             Post: [],
+            Categories: [],
         }
     },
 
     beforeMount() {
+        //Request to get post data
         this.$axios.get('api/posts/'+this.$route.params.id).then(response=>{
             this.Post = response.data;
+        })
+
+        //Reguest to get all categories
+        this.$axios.get('api/categories').then(response=>{
+            console.log(response.data)
+            this.Categories = response.data;
         })
     },
 

@@ -4,20 +4,16 @@ namespace App\Services\Post;
 
 use App\Models\Post;
 
+use App\Http\Resources\Post\PostResource;
+
 class ShowService
 {
+    //Function to return selected one post from database
     function handle($request)
     {
-        $post = Post::where('id', $request->id)->first();
+        $post = new PostResource(Post::where('id', $request->id)->first());
 
-        $response = [
-            'title' => $post->title,
-            'content' => $post->content,
-            'category_id' => $post->category_id,
-            'created_at' => $post->created_at,
-        ];
-
-        return $response;
+        return $post;
     }
 }
 

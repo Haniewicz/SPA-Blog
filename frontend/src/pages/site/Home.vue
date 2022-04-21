@@ -17,6 +17,16 @@
         <!-- Example row of columns -->
 
         <div style="float: left;" class="col-md-9 posts">
+            <a v-for="post in this.posts" href="#">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top max-card-img-height" src=" " alt="Card image cap">
+                    <div class="card-body">
+                        <h2>{{post.title}}</h2>
+                        <p><small><b>{{post.created_at}} | <span style="color: #B41F1F">{{post.category}}</span></b></small></p>
+                        <p class="card-text">{{post.content}}</p>
+                    </div>
+                </div>
+            </a>
             <a href="#">
                 <div class="card mb-4 box-shadow">
                     <img class="card-img-top max-card-img-height" src=" " alt="Card image cap">
@@ -72,6 +82,18 @@
 <script>
 
 export default {
+
+    data: function(){
+        return {
+            posts: [],
+        }
+    },
+
+    beforeMount() {
+        this.$axios.get('api/posts').then(response=>{
+            this.posts = response.data
+        })
+    },
 
 }
 

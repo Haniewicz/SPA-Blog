@@ -4,11 +4,17 @@ namespace App\Services\Post;
 
 use App\Models\Post;
 
+use App\Http\Resources\Post\PostResource;
+
 class IndexService
 {
+    //Function to return all posts from database
     function handle()
     {
-        return Post::all();
+
+        $posts = PostResource::collection(Post::all());
+
+        return $posts;
     }
 }
 
