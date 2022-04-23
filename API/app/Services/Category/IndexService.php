@@ -3,12 +3,15 @@
 namespace App\Services\Category;
 
 use App\Models\Category;
+use App\Http\Resources\Category\CategoryResource;
 
 class IndexService
 {
     function handle()
     {
-        return Category::all();
+        $categories = CategoryResource::collection(Category::all());
+
+        return $categories;
     }
 }
 

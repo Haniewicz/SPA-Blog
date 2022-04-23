@@ -34,7 +34,11 @@
                             <router-link class="dropdown-item" data-toggle="collapse" :to="{ name: 'profile' }">
                                 Profil
                             </router-link>
-                            <a class="dropdown-item" href="#">Another action</a>
+
+                            <router-link v-if="this.AdminPanelAccess == true" class="dropdown-item" data-toggle="collapse" :to="{ name: 'dashboard' }">
+                                Panel Administratora
+                            </router-link>
+
                             <a class="dropdown-item" @click="logout">Wyloguj</a>
                         </div>
                     </li>
@@ -64,6 +68,12 @@
 <script>
 export default {
 
+    data: function(){
+        return{
+            AdminPanelAccess: false,
+        }
+    },
+
     methods: {
         logout: function(){
             this.$axios.get('sanctum/csrf-cookie').then(response => {
@@ -74,6 +84,17 @@ export default {
                     })
                 })
         }
+    },
+
+    beforeMount(){
+        this.$axios.get('sanctum/csrf-cookie').then(response => {
+            this.$axios.post('api/check_permissions', 'AdminPanelAccess')
+                .then(response => {
+                    if(response.data){
+                        this.AdminPanelAccess = true;
+                    }
+                })
+            })
     },
 };
 

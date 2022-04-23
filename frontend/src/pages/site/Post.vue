@@ -22,11 +22,8 @@
         <div style="float: left;" class="col-md-3 categories right-panel">
             <h2 style="margin-bottom: 0px;">Kategorie</h2>
             <hr>
-            <a href="#">
-                <div class="category">Kategoria 1</div>
-            </a>
-            <a href="#">
-                <div class="category">Kategoria 2</div>
+            <a v-for="category in this.Categories" href="/posts/category/">
+                <div class="category">{{category.category}}</div>
             </a>
         </div>
     </div>
@@ -50,8 +47,7 @@ export default {
 
         //Reguest to get all categories
         this.$axios.get('api/categories').then(response=>{
-            console.log(response.data)
-            this.Categories = response.data;
+            this.Categories = response.data.data;
         })
     },
 

@@ -64,11 +64,8 @@
         <div style="float: left;" class="col-md-3 categories right-panel">
             <h2 style="margin-bottom: 0px;">Kategorie</h2>
             <hr>
-            <a href="#">
-                <div class="category">Kategoria 1</div>
-            </a>
-            <a href="#">
-                <div class="category">Kategoria 2</div>
+            <a v-for="category in this.categories" href="/posts/category/">
+                <div class="category">{{category.category}}</div>
             </a>
         </div>
 
@@ -86,12 +83,19 @@ export default {
     data: function(){
         return {
             posts: [],
+            categories: [],
         }
     },
 
     beforeMount() {
+        //Request to get all posts
         this.$axios.get('api/posts').then(response=>{
             this.posts = response.data
+        })
+
+        //Reguest to get all categories
+        this.$axios.get('api/categories').then(response=>{
+            this.categories = response.data.data;
         })
     },
 

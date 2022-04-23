@@ -15,7 +15,10 @@ import Post from '../pages/site/Post';
 
 //Admin panel components:
 import Dashboard from '../pages/admin/Dashboard';
+
 import Posts from '../pages/admin/Posts';
+import PostShow from '../pages/admin/PostShow';
+import PostCreate from '../pages/admin/PostCreate';
 
 //Defining routes:
 export const routes = [
@@ -88,12 +91,33 @@ export const routes = [
                 path: '',
                 component: Dashboard,
             },
-            //Posts route
+            //Posts routes
             {
-                name: 'posts',
                 path: 'posts',
-                component: Posts,
+                children: [
+                    // Posts list route
+                    {
+                        name: 'posts',
+                        path: '',
+                        component: Posts,
+                    }
+
+                    {
+                        name: 'post_create',
+                        path: '/create',
+                        Component: PostCreate,
+                    }
+
+                    {
+                        name: 'post_show',
+                        path: '/:id',
+                        component: PostShow,
+                    }
+
+
+                ],
             },
+
         ],
     },
 
