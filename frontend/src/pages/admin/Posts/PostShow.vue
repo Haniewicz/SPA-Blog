@@ -1,5 +1,5 @@
 <template>
-    Witaj w zarządzaniu postami
+    Witaj w edycji posta
 </template>
 <script>
 export default{

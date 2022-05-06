@@ -39,7 +39,7 @@
                                 Panel Administratora
                             </router-link>
 
-                            <a class="dropdown-item" @click="logout">Wyloguj</a>
+                            <a href="#" class="dropdown-item" @click="logout">Wyloguj</a>
                         </div>
                     </li>
                     <li v-else class="nav-item ml-auto">
@@ -88,7 +88,7 @@ export default {
 
     beforeMount(){
         this.$axios.get('sanctum/csrf-cookie').then(response => {
-            this.$axios.post('api/check_permissions', 'AdminPanelAccess')
+            this.$axios.post('api/check_permissions', 'access:dashboard')
                 .then(response => {
                     if(response.data){
                         this.AdminPanelAccess = true;

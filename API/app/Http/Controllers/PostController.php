@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Services\Post\IndexService;
 use App\Services\Post\ShowService;
+use App\Services\Post\DestroyService;
+Use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -78,8 +80,8 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Request $request, DestroyService $destroyService)
     {
-        //
+        return response()->json($destroyService->handle($request));
     }
 }

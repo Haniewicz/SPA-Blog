@@ -12,6 +12,7 @@ use App\Http\Controllers\CategoryController;
 //Routes available for everyone
 Route::get('posts', [PostController::class, 'index']); //Route to return all posts
 Route::get('posts/{id}', [PostController::class, 'show']); //Route to return 1 specific post
+Route::post('posts/delete', [PostController::class, 'destroy']);
 
 Route::get('categories', [CategoryController::class, 'index']); //Route to return all categories
 

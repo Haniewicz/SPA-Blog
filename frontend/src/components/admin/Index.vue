@@ -11,43 +11,29 @@
               <!-- Sidebar -->
               <div id="sidebar">
                 <header>
-                  <a href="#">Panel administratora</a>
+                    <router-link :to="{ name: 'dashboard' }">Panel administratora</router-link>
                 </header>
                 <ul class="nav">
                   <li>
-                    <a href="/add_post">
-                      <i class="zmdi zmdi-link"></i> Dodaj wpis
-                    </a>
+                    <router-link :to="{ name: 'post_create' }"><i class="zmdi zmdi-link"></i> Dodaj wpis</router-link>
                   </li>
                   <li>
-                    <a href="/posts">
-                      <i class="zmdi zmdi-link"></i> Lista wpisów
-                    </a>
+                    <router-link :to="{ name: 'posts' }"><i class="zmdi zmdi-link"></i> Lista wpisów</router-link>
                   </li>
                   <li>
-                    <a href="/users">
-                      <i class="zmdi zmdi-link"></i> Lista użytkowników
-                    </a>
+                    <router-link :to="{ name: 'category_create' }"><i class="zmdi zmdi-link"></i> Dodaj kategorię</router-link>
                   </li>
                   <li>
-                    <a href="/roles">
-                      <i class="zmdi zmdi-link"></i> Zarządzaj rolami
-                    </a>
+                    <router-link :to="{ name: 'categories' }"><i class="zmdi zmdi-link"></i> Lista kategorii</router-link>
                   </li>
                   <li>
-                    <a href="#">
-                      <i class="zmdi zmdi-info-outline"></i> About
-                    </a>
+                    <router-link :to="{ name: 'role_create' }"><i class="zmdi zmdi-link"></i> Dodaj rolę</router-link>
                   </li>
                   <li>
-                    <a href="#">
-                      <i class="zmdi zmdi-settings"></i> Services
-                    </a>
+                    <router-link :to="{ name: 'roles' }"><i class="zmdi zmdi-link"></i> Lista ról</router-link>
                   </li>
                   <li>
-                    <a href="#">
-                      <i class="zmdi zmdi-comment-more"></i> Contact
-                    </a>
+                    <router-link :to="{ name: 'users' }"><i class="zmdi zmdi-link"></i> Lista użytkowników</router-link>
                   </li>
                 </ul>
               </div>
